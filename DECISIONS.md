@@ -13,3 +13,8 @@ Design decisions and the reasons for them, newest first.
 - Cloned to `../tau2-bench`, checked out tag `v2.0.0` = `989d3285ae669e49503324bdb9981bf14fccedeb` (2026-10-19).
 - `main` was 100 commits ahead, but those are voice and leaderboard fixes; the text domains are unaffected. A release tag is easier to cite in the report.
 - τ²-bench requires Python `>=3.12,<3.14`. agent-envelope must move from 3.14 to 3.12 before it can import `tau2`.
+
+## 2026-10-30: Score COMMUNICATE with substring matching
+
+- τ²-bench v2.0.0 defaults to a semantic LLM judge (`gpt-5.5`) for the `COMMUNICATE` check. We have no OpenAI key, and a judge adds cost, noise and another model to the measurement.
+- Use `--communicate-scorer substring`, the original τ-bench rule: each required string must appear in the agent's messages. Free and deterministic. Airline tasks are English, so formatting mismatches are the main risk; check failures caused only by `COMMUNICATE` by hand.
