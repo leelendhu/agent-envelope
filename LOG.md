@@ -72,3 +72,4 @@ pass^1 = mean reward. It falls fast with k: gpt-4o retail pass^1 > 60% but pass^
 - At concurrency 1: about 195 runs per hour. Sunday's baseline (20 tasks × 3 seeds = 60 runs) is about 20 minutes, 3.2M agent tokens, 300 Gemini calls.
 - pass^1 on 4 scored tasks: 1/4. Ministral 8B is weak on airline, which leaves room for the envelope to move.
 - Task 3 crashed: τ²-bench v2.0.0 scores `COMMUNICATE` with a semantic LLM judge, `gpt-5.5` by default, and we have no OpenAI key. Tasks with no required info skip the judge, which is why 0, 1, 2 and 4 scored.
+- Re-ran task 3 with `--communicate-scorer substring`: scored cleanly, reward 0. DB matched (no write needed), but the required info "4" (total suitcases) was never stated; the agent said 2, then 1, misapplying the baggage policy. User asked for a supervisor, agent transferred. Genuine failure, not a scorer artifact. **pass^1 = 1/5.**
