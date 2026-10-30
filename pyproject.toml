@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "leelendhu", email = "30900353+leelendhu@users.noreply.github.com" }
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.12,<3.14"
 license = "MIT"
 dependencies = []
 

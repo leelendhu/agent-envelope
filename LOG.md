@@ -48,3 +48,10 @@ pass^1 = mean reward. It falls fast with k: gpt-4o retail pass^1 > 60% but pass^
 3. The working set is airline, which is single-control and has the noisiest user simulator (47% errors). Our user is Gemini Flash-Lite, likely noisier than gpt-4.1. Before blaming the agent for a failure, tag user-caused failures; add "user simulator error" to the failure taxonomy on Friday.
 4. Premature termination scores 0. Injecting tool failures could push runs into max-steps and inflate failure rates; log `termination_reason` separately from reward.
 5. Open question: switch the working set to telecom for real dual control and the cleaner user sim, or stay on airline for simpler tasks? Check run time per task on Thursday before deciding.
+
+### Wed: τ²-bench running
+
+- Cloned to `../tau2-bench`, pinned to `v2.0.0`. `uv sync`, `tau2 intro`, then one mock task: `create_task_1`, agent `mistral/ministral-8b-latest`, user `gemini/gemini-flash-lite-latest`.
+- Result: reward 1.0 (basis `DB` + `COMMUNICATE`), `user_stop`, 3.8 s, 6 messages, 2 tool calls (`get_users`, `create_task`). Viewed with `tau2 view`.
+- LiteLLM cost tracking is useless for us: it prices Gemini at paid rates although we are on the free tier, and has no price for Ministral (`agent_cost: None`). Count calls and tokens ourselves.
+- Pitfall: the Claude desktop app sandboxes `AppData\Roaming`, so `pip install --user` run from Claude's shell is invisible to your own terminal. Install Python tools from your own terminal.
